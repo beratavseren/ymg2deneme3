@@ -1,0 +1,20 @@
+# Temel imaj olarak Python kullanıyoruz
+FROM python:3.11-slim
+
+# Çalışma dizinini ayarla
+WORKDIR /flask
+
+# Gerekli bağımlılıkları yüklemek için gereklilik dosyasını ekle
+COPY requirements.txt requirements.txt
+
+# Bağımlılıkları yükle
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Uygulama dosyasını ekle
+COPY . .
+
+# Uygulamanın çalışacağı port
+EXPOSE 5000
+
+# Uygulamayı çalıştır
+CMD ["python", "app.py"]
